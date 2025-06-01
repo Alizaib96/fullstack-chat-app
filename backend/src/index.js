@@ -8,11 +8,10 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5001;
 
+app.use(express.json()); // Middleware to parse JSON bodies
 app.use("/api/auth", authRouters);
 
 app.listen(PORT, () => {
   console.log("Server is running on port:" + PORT);
   connectDB();
 });
-
-// 1CdlQqPt1OUc8afO
