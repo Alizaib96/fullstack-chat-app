@@ -20,9 +20,11 @@ import PublicRoute from "./routes/PublicRoute.jsx";
 
 // Store
 import { useAuthStore } from "./store/useAuthStore.js";
+import { useThemeStore } from "./store/useThemestore.js";
 
 const App = () => {
   const { checkAuth, isCheckingAuth, authUser } = useAuthStore();
+  const { theme } = useThemeStore();
 
   useEffect(() => {
     checkAuth();
@@ -37,7 +39,10 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div
+      data-theme={theme}
+      className="min-h-screen bg-base-100 text-base-content"
+    >
       <Navbar />
       <Routes>
         <Route
