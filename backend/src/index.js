@@ -11,7 +11,8 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5001;
 
-app.use(express.json()); // Middleware to parse JSON bodies
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(cookieParser()); // Middleware to parse cookies
 app.use(
   cors({

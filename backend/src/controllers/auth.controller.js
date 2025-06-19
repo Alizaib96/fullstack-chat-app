@@ -108,22 +108,22 @@ export const logoutController = (req, res) => {
 export const updateProfileController = async (req, res) => {
   try {
     const { profilePic } = req.body;
-    const userId = req.user._id; // Get the user ID from the request object
+    const userId = req.user._id;
+
     if (!profilePic) {
-      return res.status(400).json({ message: "Profile picture is required" });
+      return res.status(400).json({ message: "Profile pic is required" });
     }
 
-    // Upload the profile picture to Cloudinary
     const uploadResponse = await cloudinary.uploader.upload(profilePic);
-    // Find the user by ID and update the profile picture
     const updatedUser = await User.findByIdAndUpdate(
       userId,
-      { profilePic: uploadResponse.secure_url }, // Update the profilePic field with the uploaded image URL
-      { new: true } // Return the updated user document
+      { profilePic: uploadResponse.secure_url },
+      { new: true }
     );
-    res.status(200).json({ updatedUser });
+
+    res.status(200).json(updatedUser);
   } catch (error) {
-    console.log("Error in updateProfileController:", error.message);
+    console.log("error in update profile:", error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
