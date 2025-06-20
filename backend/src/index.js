@@ -22,7 +22,7 @@ app.use(
 );
 
 app.use("/api/auth", authRouters);
-app.use("/api/message", messageRouters);
+app.use("/api/messages", messageRouters);
 
 app.listen(PORT, () => {
   console.log("Server is running on port:" + PORT);
